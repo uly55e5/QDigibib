@@ -13,12 +13,17 @@
 namespace QDigibib
 {
 
+/*! Helper methods for Library management
+ *
+ * This class contains (mostly static) methodes for which help at management of
+ * the DBLibrary.
+ */
 class DBLibraryHelper: public QObject
 {
 Q_OBJECT
 	/*! Find files in a directory tree.
 
-	 The function searches for all files with name fileName in a directory tree
+	 The method searches for all files with name fileName in a directory tree
 	 starting at the rootDir. The search is not case sensitive. A list of
 	 files with absolute paths is returned. If one of the arguments is an
 	 empty string, an empty list is returned.
@@ -28,6 +33,7 @@ Q_OBJECT
 	 \param recursive if TRUE search in subdirectories
 	 \return list of files with absolute paths
 	 */
+public:
 	static QStringList
 	findFiles(const QString & fileName, const QString & startPath,
 			bool recursive = true);
