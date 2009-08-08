@@ -11,8 +11,13 @@
 #include <QObject>
 #include <QStringList>
 
+
+
 namespace QDigibib
 {
+class DBVolume;
+
+	typedef QList<DBVolume *> DBVolumeList; ///< A List of volumes
 /*! \brief Manages a set of volumes from the "Digitale Bibliothek"
  *
  * A library is defined by a set of paths to folders, which are searched
@@ -67,7 +72,15 @@ public:
 	bool removePath(const QString & path);
 
 private:
-	QStringList _libraryPaths; ///< The paths where to search for volumes
+	/*! \brief Find DB Volumes in the library paths.
+	 *
+	 * The methods searches for \c digibib.txt files in the paths set
+	 * by _libraryPaths. Then a DBVolume instance is created for every file.
+	 */
+	void findVolumes();
+
+	QStringList _libraryPaths; ///< The paths where to search for volumes \sa paths()
+	DBVolumeList _volumeList;  ///< List of Volumes in the Library
 };
 
 }

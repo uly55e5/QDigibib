@@ -6,6 +6,8 @@
  */
 
 #include "DBLibrary.h"
+#include "DBLibraryHelper.h"
+#include "DBVolume.h"
 
 #include <QDir>
 
@@ -53,4 +55,20 @@ bool DBLibrary::removePath(const QString & path)
 	return false;
 }
 
+void DBLibrary::findVolumes()
+{
+	_volumeList.clear();
+	QStringList digibibTxtList;
+	foreach(QString path, _libraryPaths)
+		{
+
+			digibibTxtList.append(DBLibraryHelper::findFiles("digibib.txt",
+					path));
+		}
+	digibibTxtList.removeDuplicates();
+	foreach(QString file, digibibTxtList)
+		{
+			_volumeList.append(new DBVolume(file));
+		}
+}
 }
