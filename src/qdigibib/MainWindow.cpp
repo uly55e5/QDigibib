@@ -1,9 +1,10 @@
 #include "MainWindow.h"
+#include "SettingsDialog.h"
 
 namespace QDigibib
 {
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+MainWindow::MainWindow(QWidget *parent) :
+	QMainWindow(parent)
 {
 	ui.setupUi(this);
 }
@@ -11,5 +12,12 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 }
+
+void MainWindow::showSettingsDialog()
+{
+	SettingsDialog sd;
+	sd.exec();
+}
+
 }
 
